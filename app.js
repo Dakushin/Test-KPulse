@@ -14,10 +14,6 @@ function AppelAPI()
     $.get(url, callBackGetSuccess).done(function() {
         //alert( "second success" );
       })
-      .fail(function() {
-        var element = document.getElementById("test");
-        element.innerHTML = input.value;
-      })
 }
 
 var callBackGetSuccess = function(data) {
