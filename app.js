@@ -1,11 +1,27 @@
 'use strict'
 
-///const switcher = document.querySelector('.btn');
 
-function ChangeText()
+
+function AppelAPI()
 {
-    var b1 = document.getElementById('b1');
-    if(b1.onclick="ChangeText();") {
-        document.getElementById('test').innerHTML = "You pressed button 1";
-    }
+    var input = document.getElementById("site-search");
+    var url = "https://entreprise.data.gouv.fr/api/sirene/v1/full_text/" + input.value + "?per_page=5&page=1";
+
+    /*var request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.responseType = 'text';*/
+
+    $.get(url, callBackGetSuccess).done(function() {
+        //alert( "second success" );
+      })
+      .fail(function() {
+        var element = document.getElementById("test");
+        element.innerHTML = input.value;
+      })
+}
+
+var callBackGetSuccess = function(data) {
+    console.log("donné api", data);
+    /*var element = document.getElementById("test");
+    element.innerHTML = data;*/
 }
