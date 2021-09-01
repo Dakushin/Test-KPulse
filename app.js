@@ -21,7 +21,7 @@ function AppelAPI()
 }
 
 var callBackGetSuccess = function(data) {
-    console.log("donné api", data);
+    console.log("données api", data);
     /*var element = document.getElementById("test");
     element.innerHTML = data;*/
 }
