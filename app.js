@@ -19,20 +19,41 @@ function AppelAPI()
 var callBackGetSuccess = function(data) {
     console.log("données api", data);
     let list = document.getElementById("list");
-    while (list.firstChild) {
-        list.removeChild(list.lastChild);
-      }
+    /*DeleteChild(list)*/
     for (let index = 0; index < data.total_results; index++) {
         let newdiv = document.createElement('div');
+        let div = document.createElement('div')
         let newP = document.createElement('p');
-        let btn = document.createElement('BUTTON');
+        let btn2 = document.createElement('BUTTON');
         let pbutton = document.createElement('p');
         pbutton.textContent = "En savoir plus";
         newP.textContent = data.etablissement[index].nom_raison_sociale;
         console.log(newP);
         list.append(newdiv);
         newdiv.append(newP);
-        newdiv.append(btn);
-        btn.append(pbutton);
+        newdiv.append(btn2);
+        newdiv.append(div)
+        btn2.append(pbutton);
+        btn2.addEventListener("click", function() {
+            DeleteChild(div)
+            let infosup1 = document.createElement('p');
+            let infosup2 = document.createElement('p');
+            let infosup3 = document.createElement('p');
+            infosup1.textContent = "siren : " + data.etablissement[index].siren
+            infosup2.textContent = "siret : " + data.etablissement[index].siret
+            infosup3.textContent = "localisation : " + data.etablissement[index].geo_adresse
+            div.append(infosup1);
+            div.append(infosup2);
+            div.append(infosup3);
+          });
     }
+}
+
+function DeleteChild(object)
+{
+    while(object.firstChild)
+    {
+        object.removeChild(object.lastChild)
+    }
+    
 }
